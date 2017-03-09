@@ -21,6 +21,9 @@
         <h1>DemoOU</h1>
     </header>
     <section>
+        <label>
+            <a href="https://github.com/terrilltang/DemoOU"><span>点击此处关注（><）</span></a>
+        </label>
         <label for="text">
             <textarea name="word" id="text" cols="30" rows="5" v-model='speechText'></textarea>
         </label>
@@ -37,10 +40,10 @@
             <label for="volume">
                 <input type="range" id="volume" min='0' max='10' v-model='volume'>
             </label>
-
+            <p class="warn">语音合成服务受限于网络，尽量使用浏览器内置：native</p>
             <label class="voice">
-        <span v-for='(vo,index) in voices' v-on:click='setVoice(vo,index)'
-              v-bind:class='{active:vo.name==voiceObj.name}'>{{vo.lang}}---{{vo.name}}</span>
+            <span v-for='(vo,index) in voices' v-on:click='setVoice(vo,index)'
+                  v-bind:class='{active:vo.name==voiceObj.name}'><i v-if="vo.lang">{{vo.lang}}:</i><i v-if="!vo.lang">内置:</i>{{vo.name}}</span>
             </label>
         </div>
 

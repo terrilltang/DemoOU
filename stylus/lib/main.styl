@@ -105,7 +105,9 @@ header {
     text-align: center;
   }
 }
-
+p.warn{
+  color:$color-warn;
+}
 section {
   position: absolute;
   z-index: 999;
@@ -129,6 +131,17 @@ section {
       &.active {
         color: $color-sub;
         text-decoration: underline;
+      }
+      i{
+        padding-right:rem(5);
+        font-weight:bold;
+      }
+    }
+    a{
+      span{
+        color:$color-primary;
+        text-decoration:underline;
+        font-style:italic;
       }
     }
   }
