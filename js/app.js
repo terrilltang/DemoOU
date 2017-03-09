@@ -22,8 +22,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     window.speechSynthesis.cancel();
     var utter = new window.SpeechSynthesisUtterance();
+    var defaultVoice=window.speechSynthesis.getVoices()[0];
+    utter.voice=defaultVoice;
     utter.addEventListener('end', function () {
-        speaker.setStatus('REPLAY', 0)
+        speaker.setStatus('PLAY', 0)
     })
     var speaker = new Vue({
         el: '#speech',
@@ -60,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     var voices = this.voices = [];
                     this.showSet=true;
                     window.speechSynthesis.getVoices().forEach(function (obj) {
-                        if (/zh-[a-z]*/i.test(obj.lang)) {
+                        if (/zh-[a-z]*/i.test(obj.lang) || obj.localService) {
+                            obj.lang='default'
                             voices.push(obj)
                         }
                     });

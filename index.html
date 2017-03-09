@@ -40,10 +40,10 @@
             <label for="volume">
                 <input type="range" id="volume" min='0' max='10' v-model='volume'>
             </label>
-
+            <p class="warn">语音合成服务受限于网络，尽量使用浏览器内置：native</p>
             <label class="voice">
-        <span v-for='(vo,index) in voices' v-on:click='setVoice(vo,index)'
-              v-bind:class='{active:vo.name==voiceObj.name}'>{{vo.lang}}---{{vo.name}}</span>
+            <span v-for='(vo,index) in voices' v-on:click='setVoice(vo,index)'
+                  v-bind:class='{active:vo.name==voiceObj.name}'><i v-if="vo.lang">{{vo.lang}}:</i><i v-if="!vo.lang">内置:</i>{{vo.name}}</span>
             </label>
         </div>
 
