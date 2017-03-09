@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DemoOU</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/vue.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+<div class="wrap" id="speech">
+    <div class="loading" v-if='!support'>
+        <span>您的浏览器不支持语音合成<br>
+        请更换浏览器或者切换到极速模式</span>
+    </div>
+    <header>
+        <h1>DemoOU</h1>
+    </header>
+    <section>
+        <label for="text">
+            <textarea name="word" id="text" cols="30" rows="5" v-model='speechText'></textarea>
+        </label>
+        <div class="set" v-if='voices.length' v-show='showSet'>
+            <p><span>(音高//0-2)PITCH:</span>{{pitch/10}}</p>
+            <label for="pitch">
+                <input type="range" id='pitch' min='0' max='20' v-model='pitch'>
+            </label>
+            <p><span>(语速//0.1-10)RATE:</span>{{rate/10}}</p>
+            <label for="rate">
+                <input type="range" id="rate" min='1' max='100' v-model='rate'>
+            </label>
+            <p><span>(音量//0-1)VOLUME:</span>{{volume/10}}</p>
+            <label for="volume">
+                <input type="range" id="volume" min='0' max='10' v-model='volume'>
+            </label>
+
+            <label class="voice">
+        <span v-for='(vo,index) in voices' v-on:click='setVoice(vo,index)'
+              v-bind:class='{active:vo.name==voiceObj.name}'>{{vo.lang}}---{{vo.name}}</span>
+            </label>
+        </div>
+
+        <label for="get">
+            <button id="get" v-on:click='getVoice()'>SET</button>
+        </label>
+        <div class="opts">
+            <label>
+                <button v-on:click='setText(4)'>(1-4)8</button>
+            </label>
+            <label>
+                <button v-on:click='setText(8)'>(1-8)8</button>
+            </label>
+            <label>
+                <button v-on:click='setText(100)'>(1-100)</button>
+            </label>
+        </div>
+
+        <label for="play">
+            <button id='play' v-bind:class="{light:!status.type}" v-on:click='play()'>{{status.text}}</button>
+        </label>
+        <label for="stop">
+            <button id='stop' class="dark" v-on:click='stop()'>STOP</button>
+        </label>
+    </section>
+</div>
+</body>
+
+</html>

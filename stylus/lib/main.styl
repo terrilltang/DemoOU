@@ -1,0 +1,144 @@
+button {
+  font-size: $font-normal;
+  line-height: 3;
+  width: 100%;
+  color: $color-dark;
+  background: $color-white;
+  border: 1px solid @color;
+  &.light {
+    background: $color-light;
+    border-color: @background;
+  }
+  &.dark {
+    background: $color-sub;
+    color: $color-light;
+    border-color: @background;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+  &[disabled] {
+    opacity: 0.3;
+  }
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height:rem(10);
+    padding:0;
+    border-radius:rem(5); /*这个属性设置使填充进度条时的图形为圆角*/
+    border:none;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    height:rem(10);
+    border-radius:rem(5); /*将轨道设为圆角的*/
+    background:$color-grey;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height:rem(30);
+    width: rem(30);
+    margin-top:rem(-10); /*使滑块超出轨道部分的偏移量相等*/
+    background:$color-sub; 
+    border-radius: 50%; /*外观设置为圆形*/
+    border: none; /*设置边框*/
+    box-shadow: 0 .125em .125em #3b4547; /*添加底部阴影*/
+}
+p{
+    display:block;
+    margin:0;
+    padding:rem(20);
+    font-size:$font-small;
+    color:$color-dark;
+    span{
+        padding:0 rem(15) 0 0;
+    }
+}
+::-webkit-scrollbar{
+  width:0;
+}
+//body
+.wrap{
+  margin:0 auto;
+  max-width:rem(750);
+  height:100%;
+  position:relative;
+  clearfix();
+}
+.loading{
+  position:absolute;
+  background:$color-white;
+  z-index:99999;
+  width:100%;
+  height:100%;
+  padding:rem(80);
+  left:0;
+  top:0;
+  bottom:0;
+  font-size:$font-large;
+  text-align:center;
+  vertical-align:middle;
+  &:before{
+    width:1px;
+    content:' ';
+    display:inline-block;
+    height:100%;
+    vertical-align: middle;
+  }
+}
+header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: rem(90);
+  background: $color-sub;
+  color: $color-light;
+  h1 {
+    margin-top: rem(9);
+    font-size: $font-large;
+    text-align: center;
+  }
+}
+
+section {
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: rem(90);
+  width: 100%;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-scrolling: touch;
+  label {
+    display: block;
+    padding: rem(20);
+    clearfix();
+    font-size: 0;
+    span {
+      font-size: $font-small;
+      padding: 0 rem(5);
+      line-height: 2;
+      color:$color-dark;
+      margin:0 rem(8) 0 0;
+      &.active {
+        color: $color-sub;
+        text-decoration: underline;
+      }
+    }
+  }
+  .opts{
+    width:100%;
+    text-align:center;
+    font-size:0;
+    label{
+      width:33.33%;
+      display:inline-block;
+    }
+  }
+}
