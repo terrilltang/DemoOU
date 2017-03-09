@@ -3,7 +3,7 @@
 由于部门在下午茶后要做一些健身操，每个人要轮流喊数，个人声音不算大，也害羞，所以有了这个东西，望各位喜欢。
 
 #### 预览地址
-(https://terrilltang.github.io/DemoOU/)[https://terrilltang.github.io/DemoOU/]
+[https://terrilltang.github.io/DemoOU/](https://terrilltang.github.io/DemoOU/)
 
 #### 更多
 1，整个开发花了整个一天时间，期间要考虑颜色以及布局和交互要怎么做，第一次使用vuejs，是照着文档来开发这个小玩具的，dogfood测试，希望不会有太多bug   
