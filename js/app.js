@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         el: '#speech',
         data: {
             support:!!new window.SpeechSynthesisUtterance(),
-            speechText: '你好！念一首诗给你听，好不好？床前明月光，疑是地上霜，举头望明月，低头思故乡',
+            speechText: 'Hello,world!',
             voices: [],
             voiceObj: {},
             pitch: '7',//0-2
@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             },
             setStatus: function (str, num) {
-                console.log(this.status);
                 this.status.text = str;
                 this.status.type = num;
             },
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(utter)
                 switch (this.status.type) {
                     case 0:
-                        utter.text = '现在开始:'+this.speechText+'......结束';
+                        utter.text = this.speechText;
                         window.speechSynthesis.speak(utter);
                         this.setStatus('PAUSE', 1)
                         break;

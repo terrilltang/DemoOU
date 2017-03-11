@@ -12,64 +12,71 @@
 </head>
 
 <body>
-<div class="wrap" id="speech">
-    <div class="loading" v-if='!support'>
-        <span>您的浏览器不支持语音合成<br>
-        请更换浏览器或者切换到极速模式</span>
-    </div>
-    <header>
-        <h1>DemoOU</h1>
-    </header>
-    <section>
-        <label>
+    <div class="wrap" id="speech">
+        <div class="loading" v-if='!support'>
+            <span>您的浏览器不支持语音合成<br>
+        请更换升级浏览器或者切换到极速模式</span>
+        </div>
+        <header>
+            <h1>DemoOU</h1>
+        </header>
+        <section>
+            <label>
             <a href="https://github.com/terrilltang/DemoOU"><span>点击此处关注（><）</span></a>
         </label>
-        <label for="text">
+            <label for="text">
             <textarea name="word" id="text" cols="30" rows="5" v-model='speechText'></textarea>
         </label>
-        <div class="set" v-if='voices.length' v-show='showSet'>
-            <p><span>(音高//0-2)PITCH:</span>{{pitch/10}}</p>
-            <label for="pitch">
+            <div class="set" v-show='showSet'>
+                <p><span>(音高//0-2)PITCH:</span>{{pitch/10}}</p>
+                <label for="pitch">
                 <input type="range" id='pitch' min='0' max='20' v-model='pitch'>
             </label>
-            <p><span>(语速//0.1-10)RATE:</span>{{rate/10}}</p>
-            <label for="rate">
+                <p><span>(语速//0.1-10)RATE:</span>{{rate/10}}</p>
+                <label for="rate">
                 <input type="range" id="rate" min='1' max='100' v-model='rate'>
             </label>
-            <p><span>(音量//0-1)VOLUME:</span>{{volume/10}}</p>
-            <label for="volume">
+                <p><span>(音量//0-1)VOLUME:</span>{{volume/10}}</p>
+                <label for="volume">
                 <input type="range" id="volume" min='0' max='10' v-model='volume'>
             </label>
-            <p class="warn">语音合成服务受限于网络，尽量使用浏览器内置：native</p>
-            <label class="voice">
+                <p class="warn">语音合成服务的发音分本地服务和远程服务；<br>
+                （<i>语言：</i>名称）点击选择
+                </p>
+                <label class="voice"  v-if='voices.length'>
             <span v-for='(vo,index) in voices' v-on:click='setVoice(vo,index)'
-                  v-bind:class='{active:vo.name==voiceObj.name}'><i v-if="vo.lang">{{vo.lang}}:</i><i v-if="!vo.lang">内置:</i>{{vo.name}}</span>
+                  v-bind:class='{active:vo.name==voiceObj.name}'>
+                  <i v-if="vo.lang">{{vo.lang}}:</i><i v-if="!vo.lang">内置:</i>{{vo.name}}
+                  </span>
             </label>
-        </div>
+            <label class='voice' v-if='!voices.length'>
+                <span>没有相应的语音服务提供</span>
+            </label>
+            </div>
 
-        <label for="get">
+            <label for="get">
             <button id="get" v-on:click='getVoice()'>SET</button>
         </label>
-        <div class="opts">
-            <label>
+            <div class="opts">
+                <label>
                 <button v-on:click='setText(4)'>(1-4)8</button>
             </label>
-            <label>
+                <label>
                 <button v-on:click='setText(8)'>(1-8)8</button>
             </label>
-            <label>
+                <label>
                 <button v-on:click='setText(100)'>(1-100)</button>
             </label>
-        </div>
+            </div>
 
-        <label for="play">
+            <label for="play">
             <button id='play' v-bind:class="{light:!status.type}" v-on:click='play()'>{{status.text}}</button>
         </label>
-        <label for="stop">
+            <label for="stop">
             <button id='stop' class="dark" v-on:click='stop()'>STOP</button>
         </label>
-    </section>
-</div>
+        </section>
+    </div>
 </body>
 
 </html>
